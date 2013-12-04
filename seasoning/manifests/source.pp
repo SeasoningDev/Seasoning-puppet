@@ -33,7 +33,7 @@ class seasoning::source {
     group => root,
     mode => 660,
     content => template('seasoning/source/secrets.py.erb'),
-    require => vscrepo['/srv/webapps/Seasoning'],
+    require => Vcsrepo['/srv/webapps/Seasoning'],
   }  
   
 }
