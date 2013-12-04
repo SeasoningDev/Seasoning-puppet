@@ -13,6 +13,15 @@ class seasoning::nginx {
     require => File['nginx_repo'], 
   }
   
+  file { 'nginx_sysconfig':
+    path => '/etc/sysconfig/nginx.conf',
+    owner => root,
+    group => root,
+    mode => 644,
+    source => 'puppet:///modules/seasoning/nginx/sysconfig.conf',
+    require => Package['nginx'],
+  }
+  
   file { 'nginx_conf_dir':
     ensure => directory,
     path => '/etc/nginx/conf.d',
