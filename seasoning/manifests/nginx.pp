@@ -20,11 +20,11 @@ class seasoning::nginx {
   }
   
   file { 'nginx_conf':
-    path => '/etc/nginx/conf.d/nginx.conf',
+    path => '/etc/nginx/conf.d/seasoning.conf',
     owner => nginx,
     group => root,
     mode => 661,
-    source => 'puppet:///modules/seasoning/nginx/nginx.conf',
+    source => 'puppet:///modules/seasoning/nginx/seasoning.conf',
     require => File['nginx_conf_dir'],
   }
   
