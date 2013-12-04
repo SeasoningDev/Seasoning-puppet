@@ -56,7 +56,7 @@ class seasoning::nginx {
     hasrestart => true,
     hasstatus => true,
     require => Package['nginx'],
-    subscribe => [File['nginx_init_script'], File['nginx_conf']],
+    subscribe => File['nginx_conf'],
   }
   
 }
