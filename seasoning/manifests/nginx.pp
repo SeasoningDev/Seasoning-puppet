@@ -28,6 +28,21 @@ class seasoning::nginx {
     require => File['nginx_conf_dir'],
   }
   
+  file { 'nginx_ssl_crt':
+    path => '/etc/ssl/seasoning.crt',
+    owner => nginx,
+    group => root,
+    mode => 664,
+    source => 'puppet:///modules/seasoning/nginx/seasoning.crt',
+  }
+  
+  file { 'nginx_ssl_key':
+    path => '/etc/ssl/seasoning.crt',
+    owner => nginx,
+    group => root,
+    mode => 660,
+  }
+  
   
   
   file { 'static_files_dir':
@@ -55,7 +70,7 @@ class seasoning::nginx {
     ensure => 'running',
     hasrestart => true,
     hasstatus => true,
-    require => Package['nginx'],
+    require => [Package['nginx'], File['nginx_ssl_crt'], File['nginx_ssl_key']],
     subscribe => File['nginx_conf'],
   }
   
