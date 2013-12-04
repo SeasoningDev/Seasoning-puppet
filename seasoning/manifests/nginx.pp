@@ -3,14 +3,19 @@
  */
 class seasoning::nginx {
   
-  package { 'seasoning-nginx':
+  file { 'nginx_repo':
+    path => '/etc/yum.repos.d/nginx.repo',
+    source => 'puppet:///modules/seasoning/nginx/nginx.repo',
+  }
+  
+  package { 'nginx':
     ensure => installed,
   }
   
   file { 'nginx_conf_dir':
     ensure => directory,
     path => '/usr/local/nginx/conf',
-    require => Package['seasoning-nginx'],
+    require => Package['nginx'],
   }
   
   file { 'nginx_init_script':
@@ -19,7 +24,7 @@ class seasoning::nginx {
     group => root,
     mode => 771,
     source => 'puppet:///modules/seasoning/nginx/nginx-init.sh',
-    require => Package['seasoning-nginx'],
+    require => Package['nginx'],
   }
   
   file { 'nginx_conf':
@@ -49,7 +54,7 @@ class seasoning::nginx {
     group => root,
     mode => 644,
     recurse => true,
-    require => Package['seasoning-nginx'],
+    require => Package['nginx'],
   }
   
   
@@ -58,7 +63,7 @@ class seasoning::nginx {
     ensure => 'running',
     hasrestart => true,
     hasstatus => true,
-    require => Package['seasoning-nginx'],
+    require => Package['nginx'],
     subscribe => [File['nginx_init_script'], File['nginx_conf']],
   }
   
