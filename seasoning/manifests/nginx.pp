@@ -37,6 +37,7 @@ class seasoning::nginx {
   }
   
   file { 'nginx_ssl_key':
+    ensure => file,
     path => '/etc/ssl/seasoning.key',
     owner => nginx,
     group => root,
