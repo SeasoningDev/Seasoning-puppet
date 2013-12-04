@@ -31,7 +31,7 @@ class seasoning::environment {
     owner => root,
   }
   
-  python::requirement { '/srv/webapps/Seasoning/requirements.txt':
+  python::requirements { '/srv/webapps/Seasoning/requirements.txt':
     virtualenv => '/virtualenvs/Seasoning',
     owner => root,
   }
