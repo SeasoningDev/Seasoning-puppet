@@ -56,7 +56,6 @@ class seasoning::nginx {
   
   service { 'nginx':
     ensure => 'running',
-    enabled => true,
     hasrestart => true,
     hasstatus => true,
     require => Package['nginx'],
