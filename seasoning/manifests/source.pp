@@ -19,7 +19,7 @@ class seasoning::source {
   }
   
   vcsrepo { '/srv/webapps/Seasoning':
-    ensure => present,
+    ensure => latest,
     provider => git,
     source => 'git://github.com/SeasoningDev/Seasoning.git',
     revision => 'master',
