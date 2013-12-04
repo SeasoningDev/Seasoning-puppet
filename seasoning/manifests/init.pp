@@ -5,4 +5,6 @@
 class seasoning {
   include seasoning::source
   include seasoning::nginx
+  
+  include seasoning::environment
 }
