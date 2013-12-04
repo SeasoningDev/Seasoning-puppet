@@ -3,5 +3,6 @@
  * webapp
  */
 class seasoning {
+  include seasoning::source
   include seasoning::nginx
 }

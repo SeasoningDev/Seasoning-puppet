@@ -3,7 +3,6 @@
  */
 class seasoning::source {
   
-  
   file { 'webapps_dir':
     ensure => directory,
     path => '/srv/webapps',
