@@ -15,21 +15,12 @@ class seasoning::nginx {
   
   file { 'nginx_conf_dir':
     ensure => directory,
-    path => '/usr/local/nginx/conf',
-    require => Package['nginx'],
-  }
-  
-  file { 'nginx_init_script':
-    path => '/etc/init.d/nginx',
-    owner => root,
-    group => root,
-    mode => 771,
-    source => 'puppet:///modules/seasoning/nginx/nginx-init.sh',
+    path => '/etc/nginx/conf.d',
     require => Package['nginx'],
   }
   
   file { 'nginx_conf':
-    path => '/usr/local/nginx/conf/nginx.conf',
+    path => '/etc/nginx/conf.d/nginx.conf',
     owner => nginx,
     group => root,
     mode => 661,
