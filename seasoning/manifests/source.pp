@@ -24,7 +24,7 @@ class seasoning::source {
     source => 'git://github.com/SeasoningDev/Seasoning.git',
     revision => 'master',
     require => File['source_dir'],
-    user => root,
+    seluser  => 'unconfined',
   }
   
   file { 'secrets_file':
