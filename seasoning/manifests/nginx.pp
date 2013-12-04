@@ -10,7 +10,7 @@ class seasoning::nginx {
   file { 'nginx_conf_dir':
     ensure => directory,
     path => '/usr/local/nginx/conf',
-    require => Package['nginx'],
+    require => Package['seasoning-nginx'],
   }
   
   file { 'nginx_init_script':
@@ -19,7 +19,7 @@ class seasoning::nginx {
     group => root,
     mode => 771,
     source => 'puppet:///modules/seasoning/nginx/nginx-init.sh',
-    require => Package['nginx'],
+    require => Package['seasoning-nginx'],
   }
   
   file { 'nginx_conf':
@@ -49,7 +49,7 @@ class seasoning::nginx {
     group => root,
     mode => 644,
     recurse => true,
-    require => Package['nginx'],
+    require => Package['seasoning-nginx'],
   }
   
   
@@ -58,7 +58,7 @@ class seasoning::nginx {
     ensure => 'running',
     hasrestart => true,
     hasstatus => true,
-    require => Package['nginx'],
+    require => Package['seasoning-nginx'],
     subscribe => [File['nginx_init_script'], File['nginx_conf']],
   }
   
