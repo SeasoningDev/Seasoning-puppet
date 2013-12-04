@@ -10,6 +10,7 @@ class seasoning::nginx {
   
   package { 'nginx':
     ensure => installed,
+    require => File['nginx_repo'], 
   }
   
   file { 'nginx_conf_dir':
