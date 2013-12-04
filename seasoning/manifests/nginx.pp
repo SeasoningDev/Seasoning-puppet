@@ -7,7 +7,7 @@ class seasoning::nginx {
     ensure => installed,
   }
   
-  file { 'nginx_conf_dir'
+  file { 'nginx_conf_dir':
     ensure => directory,
     path => '/usr/local/nginx/conf',
     require => Package['nginx'],
