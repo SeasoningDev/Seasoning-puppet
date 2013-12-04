@@ -4,12 +4,6 @@
 class seasoning::environment {
   require seasoning::source
   
-  class { 'python':
-    version => '2.7.5',
-    pip => true,
-    virtualenv => true,
-  }
-  
   file { 'virtualenvs_dir':
     ensure => directory,
     path => '/virtualenvs',
