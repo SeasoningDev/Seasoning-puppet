@@ -45,7 +45,7 @@ class seasoning::environment {
     virtualenv => '/virtualenvs/Seasoning',
     src => 'src --use-wheel --no-index --find-links=/tmp/wheels',
     owner => root,
-    require => [Python::Virtualenv['/virtualenvs/Seasoning'],q File['wheels']],
+    require => [Python::Virtualenv['/virtualenvs/Seasoning'], File['wheels']],
     loglevel => 'debug',
   }
   
