@@ -50,7 +50,6 @@ class seasoning::environment {
   exec { "seasoning_requirements":
     provider => shell,
     command => "'/virtualenvs/Seasoning/bin/pip --log-file ${cwd}/pip.log install --use-wheel --no-index --find-links=/tmp/wheels -r /srv/webapps/Seasoning/requirements.txt",
-    refreshonly => true,
     timeout => 1800,
     user => root,
   }
