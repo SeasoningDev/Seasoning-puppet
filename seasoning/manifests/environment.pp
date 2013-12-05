@@ -54,11 +54,4 @@ class seasoning::environment {
     user => root,
   }
   
-  python::pip { 'uwsgi':
-    virtualenv => '/virtualenvs/Seasoning',
-    owner => root,
-    install_args => '--use-wheel --no-index --find-links=/tmp/wheels',
-    require => Python::Virtualenv['/virtualenvs/Seasoning'],
-  }
-  
 }

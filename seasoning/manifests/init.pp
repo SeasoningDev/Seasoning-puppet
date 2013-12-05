@@ -7,4 +7,5 @@ class seasoning {
   include seasoning::nginx
   
   include seasoning::environment
+  include seasoning::uwsgi
 }
