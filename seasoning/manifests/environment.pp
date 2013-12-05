@@ -29,7 +29,7 @@ class seasoning::environment {
   python::virtualenv { '/virtualenvs/Seasoning':
     ensure => present,
     version => '2.7.6',
-    path = ['/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ],
+    path => ['/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ],
     owner => root,
     group => root,
     require => [Package['python27-2.7.6rc1-1.i386'], File['virtualenvs_dir']],
