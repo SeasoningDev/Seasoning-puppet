@@ -37,11 +37,13 @@ class seasoning::environment {
   python::pip { 'uwsgi':
     virtualenv => '/virtualenvs/Seasoning',
     owner => root,
+    require => Python::Virtualenv['/virtualenvs/Seasoning'],
   }
   
   python::requirements { '/srv/webapps/Seasoning/requirements.txt':
     virtualenv => '/virtualenvs/Seasoning',
     owner => root,
+    require => Python::Virtualenv['/virtualenvs/Seasoning'],
   }
   
 }
