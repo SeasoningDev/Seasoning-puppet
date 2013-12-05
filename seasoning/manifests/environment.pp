@@ -41,6 +41,11 @@ class seasoning::environment {
     recurse => true,
   }
   
+  file { '/srv/webapps/Seasoning/requirements.txt':
+    ensure => present,
+    path => '/srv/webapps/Seasoning/requirements.txt',
+  }
+  
   python::requirements { '/srv/webapps/Seasoning/requirements.txt':
     virtualenv => '/virtualenvs/Seasoning',
     src => 'src --use-wheel --no-index --find-links=/tmp/wheels',
