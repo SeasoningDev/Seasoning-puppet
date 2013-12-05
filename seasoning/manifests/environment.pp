@@ -4,6 +4,20 @@
 class seasoning::environment {
   require seasoning::source
   
+  file { 'python2.7.rpm': 
+    path => '/tmp/python2.7.rpm',
+    owner => root,
+    group => root,
+    source => 'puppet:///modules/seasoning/environment/python27-2.7.6rc1-1.i386.rpm',
+  }
+  
+  package { 'python2.7':
+    ensure => installed,
+    provider => rpm,
+    source => '/tmp/python2.7.rpm',
+    require => File['python2.7.rpm'],
+  }
+  
   file { 'virtualenvs_dir':
     ensure => directory,
     path => '/virtualenvs',
@@ -17,7 +31,7 @@ class seasoning::environment {
     version => '2.7.5',
     owner => root,
     group => root,
-    require => File['virtualenvs_dir'],
+    require => [Package['python2.7'], File['virtualenvs_dir']],
   }
   
   python::pip { 'uwsgi':
