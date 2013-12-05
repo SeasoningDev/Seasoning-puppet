@@ -15,7 +15,7 @@ class seasoning::uwsgi {
     ensure => present,
   }
   
-  file { 'uwsgi_config_dir':
+  file { 'uwsgi_conf_dir':
     ensure => directory,
     path => '/etc/uwsgi',
     owner => uwsgi,
