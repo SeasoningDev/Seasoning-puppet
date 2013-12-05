@@ -18,7 +18,7 @@ class seasoning::uwsgi {
   file { 'uwsgi_config_dir':
     ensure => directory,
     path => '/etc/uwsgi',
-    user => uwsgi,
+    owner => uwsgi,
     group => root,
     mode => 661,
     require => User['uwsgi'],
@@ -26,7 +26,7 @@ class seasoning::uwsgi {
   
   file { 'uwsgi_config':
     path => '/etc/uwsgi/seasoning.ini',
-    user => uwsgi,
+    owner => uwsgi,
     group => root,
     mode => 661,
     source => 'puppet:///modules/seasoning/uwsgi/seasoning.ini',
@@ -35,7 +35,7 @@ class seasoning::uwsgi {
   
   file { 'uwsgi_startup_script':
     path => '/etc/init.d/uwsgi',
-    user => root,
+    owner => root,
     group => root,
     mode => 755,
     source => 'puppet:///modules/seasoning/uwsgi/uwsgi',
@@ -44,7 +44,7 @@ class seasoning::uwsgi {
   file { 'uwsgi_run_dir':
     ensure => directory,
     path => '/var/run/uwsgi',
-    user => uwsgi,
+    owner => uwsgi,
     group => root,
     mode => 755,
   }
