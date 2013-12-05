@@ -4,8 +4,9 @@
  */
 class seasoning {
   include seasoning::source
-  include seasoning::nginx
   
   include seasoning::environment
   include seasoning::uwsgi
+  
+  include seasoning::nginx
 }

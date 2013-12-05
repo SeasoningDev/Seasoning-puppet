@@ -2,6 +2,7 @@
  * This class install nginx and configures it correctly
  */
 class seasoning::nginx {
+  require seasoning::uwsgi
   
   file { 'nginx_repo':
     path => '/etc/yum.repos.d/nginx.repo',
@@ -53,16 +54,6 @@ class seasoning::nginx {
     group => root,
     mode => 644,
     recurse => true,
-  }
-  
-  file { 'media_files_dir':
-    ensure => directory,
-    path => '/srv/media',
-    owner => nginx,
-    group => root,
-    mode => 644,
-    recurse => true,
-    require => Package['nginx'],
   }
   
   
