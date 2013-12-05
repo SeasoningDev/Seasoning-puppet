@@ -11,7 +11,7 @@ class seasoning::uwsgi {
     require => Python::Virtualenv['/virtualenvs/Seasoning'],
   }
   
-  user { 'uswgi':
+  user { 'uwsgi':
     ensure => present,
   }
   
