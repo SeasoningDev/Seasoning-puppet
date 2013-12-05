@@ -53,7 +53,6 @@ class seasoning::environment {
     refreshonly => true,
     timeout => 1800,
     user => root,
-    subscribe => File[seasoning_requirements],
   }
   
   python::pip { 'uwsgi':
