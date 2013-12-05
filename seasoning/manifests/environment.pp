@@ -35,13 +35,26 @@ class seasoning::environment {
     require => [Package["python27-2.7.6rc1-1.${architecture}"], File['virtualenvs_dir']],
   }
   
-  python::pip { 'uwsgi':
+  python::pip { 'wheel':
     virtualenv => '/virtualenvs/Seasoning',
     owner => root,
     require => Python::Virtualenv['/virtualenvs/Seasoning'],
   }
   
+  file { 'wheels':
+    path => '/tmp/wheels',
+    source => "puppet:///modules/seasoning/environment/${architecture}/wheels",
+    recurse => true,
+  }
+  
   python::requirements { '/srv/webapps/Seasoning/requirements.txt':
+    virtualenv => '/virtualenvs/Seasoning',
+    requirements => '/srv/webapps/Seasoning/requirements.txt --use-wheel --no-index --find-links=/tmp/wheels'
+    owner => root,
+    require => [Python::Virtualenv['/virtualenvs/Seasoning'], Python::Pip['wheel'], File['wheels']],
+  }
+  
+  python::pip { 'uwsgi':
     virtualenv => '/virtualenvs/Seasoning',
     owner => root,
     require => Python::Virtualenv['/virtualenvs/Seasoning'],
