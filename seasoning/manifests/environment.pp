@@ -28,7 +28,7 @@ class seasoning::environment {
   
   python::virtualenv { '/virtualenvs/Seasoning':
     ensure => present,
-    version => '2.7.6',
+    version => '2.7',
     path => ['/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ],
     owner => root,
     group => root,
