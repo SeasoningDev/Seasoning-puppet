@@ -49,7 +49,7 @@ class seasoning::environment {
   
   python::requirements { '/srv/webapps/Seasoning/requirements.txt':
     virtualenv => '/virtualenvs/Seasoning',
-    requirements => '/srv/webapps/Seasoning/requirements.txt --use-wheel --no-index --find-links=/tmp/wheels',
+    src => 'src --use-wheel --no-index --find-links=/tmp/wheels',
     owner => root,
     require => [Python::Virtualenv['/virtualenvs/Seasoning'], Python::Pip['wheel'], File['wheels']],
   }
