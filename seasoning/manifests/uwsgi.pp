@@ -56,7 +56,6 @@ class seasoning::uwsgi {
     group => root,
     mode => 644,
     recurse => true,
-    require => Package['nginx'],
   }
   
   service { 'uwsgi':
