@@ -49,6 +49,14 @@ class seasoning::uwsgi {
     mode => 755,
   }
   
+  file { 'uwsgi_log_dir':
+    ensure => directory,
+    path => '/var/log/uwsgi',
+    owner => uwsgi,
+    group => root,
+    mode => 755,
+  }
+  
   file { 'media_files_dir':
     ensure => directory,
     path => '/srv/media',
