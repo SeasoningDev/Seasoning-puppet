@@ -3,6 +3,11 @@
  * webapp
  */
 class seasoning {
+  
+  user { 'uwsgi':
+    ensure => present,
+  }
+  
   include seasoning::source
   
   include seasoning::environment

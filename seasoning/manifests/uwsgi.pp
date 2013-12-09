@@ -12,10 +12,6 @@ class seasoning::uwsgi {
     require => Python::Virtualenv['/virtualenvs/Seasoning'],
   }
   
-  user { 'uwsgi':
-    ensure => present,
-  }
-  
   file { 'uwsgi_conf_dir':
     ensure => directory,
     path => '/etc/uwsgi',
@@ -56,25 +52,6 @@ class seasoning::uwsgi {
     owner => uwsgi,
     group => root,
     mode => 755,
-  }
-  
-  file { 'media_files_dir':
-    ensure => directory,
-    path => '/srv/media',
-  }  
-  
-  file { 'static_files_dir':
-    ensure => directory,
-    path => '/srv/static',
-  }
-  
-  file { 'server_dir':
-    ensure => directory,
-    path => '/srv',
-    owner => uwsgi,
-    group => root,
-    mode => 644,
-    recurse => true,
   }
   
   service { 'uwsgi':

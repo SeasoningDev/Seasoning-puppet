@@ -11,7 +11,10 @@ class seasoning::source {
   file { 'source_dir':
     ensure => directory,
     path => '/srv/webapps/Seasoning',
+    owner => uwsgi,
+    group => root,
     mode => 644,
+    recurse => true,
     require => File['webapps_dir'],
   }
   

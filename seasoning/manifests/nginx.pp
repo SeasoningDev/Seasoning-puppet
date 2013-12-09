@@ -47,6 +47,26 @@ class seasoning::nginx {
   
   
   
+  file { 'media_files_dir':
+    ensure => directory,
+    path => '/srv/media',
+    owner => uwsgi,
+    group => root,
+    mode => 644,
+    recurse => true,
+  }  
+  
+  file { 'static_files_dir':
+    ensure => directory,
+    path => '/srv/static',
+    owner => uwsgi,
+    group => root,
+    mode => 644,
+    recurse => true,
+  }
+  
+  
+  
   service { 'nginx':
     ensure => 'running',
     hasrestart => true,
