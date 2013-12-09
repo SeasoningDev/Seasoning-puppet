@@ -61,24 +61,16 @@ class seasoning::uwsgi {
   file { 'media_files_dir':
     ensure => directory,
     path => '/srv/media',
-    owner => uwsgi,
-    group => root,
-    mode => 644,
-    recurse => true,
   }  
   
   file { 'static_files_dir':
     ensure => directory,
     path => '/srv/static',
-    owner => uwsgi,
-    group => root,
-    mode => 644,
-    recurse => true,
   }
   
-  file { 'webapps_dir':
+  file { 'server_dir':
     ensure => directory,
-    path => '/srv/webapps',
+    path => '/srv',
     user => uwsgi,
     group => root,
     mode => 644,
