@@ -29,7 +29,7 @@ class seasoning::source {
   file { 'secrets_file':
     ensure => present,
     path => '/srv/webapps/Seasoning/Seasoning/Seasoning/secrets.py',
-    owner => root,
+    owner => uwsgi,
     group => root,
     mode => 660,
   }
