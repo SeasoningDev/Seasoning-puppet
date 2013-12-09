@@ -71,7 +71,7 @@ class seasoning::uwsgi {
   file { 'server_dir':
     ensure => directory,
     path => '/srv',
-    user => uwsgi,
+    owner => uwsgi,
     group => root,
     mode => 644,
     recurse => true,
