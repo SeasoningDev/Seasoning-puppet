@@ -54,4 +54,9 @@ class seasoning::environment {
     user => root,
   }
   
+  package { 'sass':
+    ensure => 'installed',
+    provider => 'gem',
+  }
+  
 }

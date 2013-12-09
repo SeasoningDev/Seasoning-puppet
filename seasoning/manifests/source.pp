@@ -32,8 +32,6 @@ class seasoning::source {
     owner => root,
     group => root,
     mode => 660,
-    content => template('seasoning/source/secrets.py.erb'),
-    require => Vcsrepo['/srv/webapps/Seasoning'],
   }
   
 }
