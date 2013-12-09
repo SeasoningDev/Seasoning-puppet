@@ -76,9 +76,10 @@ class seasoning::uwsgi {
     recurse => true,
   }
   
-  file { 'source_dir':
+  file { 'webapps_dir':
     ensure => directory,
-    path => '/srv/webapps/Seasoning',
+    path => '/srv/webapps',
+    user => uwsgi,
     group => root,
     mode => 644,
     recurse => true,
