@@ -47,17 +47,6 @@ class seasoning::nginx {
   
   
   
-  file { 'static_files_dir':
-    ensure => directory,
-    path => '/srv/static',
-    owner => root,
-    group => root,
-    mode => 644,
-    recurse => true,
-  }
-  
-  
-  
   service { 'nginx':
     ensure => 'running',
     hasrestart => true,

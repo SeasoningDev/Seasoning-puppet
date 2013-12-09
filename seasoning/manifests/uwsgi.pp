@@ -3,6 +3,7 @@
  */
 class seasoning::uwsgi {
   require seasoning::environment
+  require seasoning::source
   
   python::pip { 'uwsgi==1.9.20':
     virtualenv => '/virtualenvs/Seasoning',
@@ -61,6 +62,23 @@ class seasoning::uwsgi {
     ensure => directory,
     path => '/srv/media',
     owner => uwsgi,
+    group => root,
+    mode => 644,
+    recurse => true,
+  }  
+  
+  file { 'static_files_dir':
+    ensure => directory,
+    path => '/srv/static',
+    owner => uwsgi,
+    group => root,
+    mode => 644,
+    recurse => true,
+  }
+  
+  file { 'source_dir':
+    ensure => directory,
+    path => '/srv/webapps/Seasoning',
     group => root,
     mode => 644,
     recurse => true,

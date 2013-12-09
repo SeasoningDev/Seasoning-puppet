@@ -11,7 +11,6 @@ class seasoning::source {
   file { 'source_dir':
     ensure => directory,
     path => '/srv/webapps/Seasoning',
-    owner => root,
     group => root,
     mode => 644,
     recurse => true,
