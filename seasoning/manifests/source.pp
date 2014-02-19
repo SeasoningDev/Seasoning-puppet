@@ -37,7 +37,7 @@ class seasoning::source {
 
   file { 'backups_dir':
     ensure => directory,
-    path => '/backups/mysql'
+    path => '/backups',
   }
 
 }

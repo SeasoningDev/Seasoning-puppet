@@ -10,4 +10,8 @@ class seasoning::database {
     host => localhost
   }
   
+  file { 'mysql_backups_dir':
+    ensure => directory,
+    path => '/backups/mysql',
+  } 
 }
