@@ -52,11 +52,24 @@ class seasoning::environment {
     command => "/virtualenvs/Seasoning/bin/pip --log-file /tmp/pip.log install --use-wheel --find-links=/tmp/wheels -r /srv/webapps/Seasoning/requirements.txt",
     timeout => 1800,
     user => root,
+    refreshonly => true,
+    subscribe => Vcsrepo['/srv/webapps/Seasoning'],
+    require => [Python::Virtualenv['/virtualenvs/Seasoning'], File['seasoning_requirements']],
   }
   
   package { 'sass':
     ensure => 'installed',
     provider => 'gem',
+  }
+
+  exec { "collectstatic":
+    provider => shell,
+    command => "/virtualenvs/Seasoning/bin/python /srv/webapps/Seasoning/Seasoning/manage.py collectstatic --noinput",
+    timeout => 1800,
+    user => root,
+    refreshonly => true,
+    subscribe => Vcsrepo['/srv/webapps/Seasoning'],
+    require => Python::Virtualenv['/virtualenvs/Seasoning'],
   }
   
 }

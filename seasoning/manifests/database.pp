@@ -6,7 +6,7 @@ class seasoning::database {
   
   mysql::db { 'seasoning':
     user => 'Seasoning',
-    password => 'secret',
+    password => $db_pw,
     host => localhost
   }
   

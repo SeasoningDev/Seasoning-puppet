@@ -14,4 +14,6 @@ class seasoning {
   include seasoning::uwsgi
   
   include seasoning::nginx
+
+  include seasoning::database
 }

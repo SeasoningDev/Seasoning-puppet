@@ -13,6 +13,12 @@ class seasoning::nginx {
     ensure => installed,
     require => File['nginx_repo'], 
   }
+
+  file { 'nginx_sysconfig':
+    path => '/etc/sysconfig/nginx',
+    source => 'puppet:///modules/seasoning/nginx/nginx_sysconfig',
+    require => Package['nginx'],
+  }
   
   file { 'nginx_conf_dir':
     ensure => directory,
@@ -26,7 +32,16 @@ class seasoning::nginx {
     group => root,
     mode => 661,
     source => 'puppet:///modules/seasoning/nginx/seasoning.conf',
-    require => File['nginx_conf_dir'],
+    require => [File['nginx_conf_dir'], Package['nginx'], ],
+  }
+
+  file { 'nginx_uwsgi_params':
+    path => '/etc/nginx/conf.d/uwsgi_params',
+    owner => nginx,
+    group => root,
+    mode => 661,
+    source => 'puppet:///modules/seasoning/nginx/uwsgi_params',
+    require => [File['nginx_conf_dir'], Package['nginx'], ],
   }
   
   file { 'nginx_ssl_crt':
@@ -35,6 +50,7 @@ class seasoning::nginx {
     group => root,
     mode => 664,
     source => 'puppet:///modules/seasoning/nginx/seasoning.crt',
+    require => Package['nginx'],
   }
   
   file { 'nginx_ssl_key':
@@ -43,9 +59,8 @@ class seasoning::nginx {
     owner => nginx,
     group => root,
     mode => 660,
+    require => Package['nginx'],
   }
-  
-  
   
   file { 'media_files_dir':
     ensure => directory,
@@ -65,14 +80,12 @@ class seasoning::nginx {
     recurse => true,
   }
   
-  
-  
   service { 'nginx':
     ensure => 'running',
     hasrestart => true,
     hasstatus => true,
-    require => [Package['nginx'], File['nginx_ssl_crt'], File['nginx_ssl_key']],
-    subscribe => File['nginx_conf'],
+    require => [Package['nginx'], File['nginx_sysconfig'], File['nginx_ssl_crt'], File['nginx_ssl_key']],
+    subscribe => [File['nginx_sysconfig'], File['nginx_conf'], ],
   }
   
 }

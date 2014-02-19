@@ -33,5 +33,5 @@ class seasoning::source {
     group => root,
     mode => 660,
   }
-  
+
 }

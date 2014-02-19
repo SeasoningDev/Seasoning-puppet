@@ -5,11 +5,11 @@ class seasoning::uwsgi {
   require seasoning::environment
   require seasoning::source
   
-  python::pip { 'uwsgi==1.9.20':
-    virtualenv => '/virtualenvs/Seasoning',
-    owner => root,
-    install_args => '--use-wheel --no-index --find-links=/tmp/wheels',
-    require => Python::Virtualenv['/virtualenvs/Seasoning'],
+  exec { "install_uwsgi":
+      provider => shell,
+      command => "/virtualenvs/Seasoning/bin/pip --log-file /tmp/pip.log install --use-wheel --find-links=/tmp/wheels uwsgi==1.9.20",
+      timeout => 1800,
+      user => root,
   }
   
   file { 'uwsgi_conf_dir':
@@ -58,7 +58,7 @@ class seasoning::uwsgi {
     ensure => running,
     hasrestart => true,
     hasstatus => true,
-    require => [Python::Pip['uwsgi==1.9.20'], File['uwsgi_config'], File['uwsgi_startup_script']],
+    require => [File['uwsgi_config'], File['uwsgi_startup_script']],
     subscribe => [File['uwsgi_config'], File['uwsgi_startup_script']],
   }
   
