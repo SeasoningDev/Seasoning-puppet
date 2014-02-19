@@ -35,4 +35,9 @@ class seasoning::source {
     require => Vcsrepo['/srv/webapps/Seasoning'],
   }
 
+  file { 'backups_dir':
+    ensure => directory,
+    path => '/backups/mysql'
+  }
+
 }
