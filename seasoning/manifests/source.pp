@@ -15,7 +15,7 @@ class seasoning::source {
     group => root,
     mode => 644,
     recurse => true,
-    require => File['webapps_dir'],
+    subscribe => Vcsrepo['/srv/webapps/Seasoning'],
   }
   
   vcsrepo { '/srv/webapps/Seasoning':
@@ -23,7 +23,7 @@ class seasoning::source {
     provider => git,
     source => 'git://github.com/SeasoningDev/Seasoning.git',
     revision => 'master',
-    require => File['source_dir'],
+    require => File['webapps_dir'],
   }
   
   file { 'secrets_file':
@@ -32,6 +32,7 @@ class seasoning::source {
     owner => uwsgi,
     group => root,
     mode => 660,
+    require => Vcsrepo['/srv/webapps/Seasoning'],
   }
 
 }
