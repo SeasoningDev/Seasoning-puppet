@@ -9,9 +9,13 @@ class seasoning::nginx {
     source => 'puppet:///modules/seasoning/nginx/nginx.repo',
   }
   
+  package { 'httpd':
+    ensure => absent,
+  }
+
   package { 'nginx':
     ensure => installed,
-    require => File['nginx_repo'], 
+    require => [Package['httpd'], File['nginx_repo']], 
   }
 
   file { 'nginx_sysconfig':
