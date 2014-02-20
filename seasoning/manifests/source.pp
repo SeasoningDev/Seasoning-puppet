@@ -32,6 +32,7 @@ class seasoning::source {
     owner => uwsgi,
     group => root,
     mode => 660,
+    source => '/tmp/secrets.py',
     require => Vcsrepo['/srv/webapps/Seasoning'],
   }
 

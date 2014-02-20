@@ -52,8 +52,6 @@ class seasoning::environment {
     command => "/virtualenvs/Seasoning/bin/pip --log-file /tmp/pip.log install --use-wheel --find-links=/tmp/wheels -r /srv/webapps/Seasoning/requirements.txt",
     timeout => 1800,
     user => root,
-    refreshonly => true,
-    subscribe => Vcsrepo['/srv/webapps/Seasoning'],
     require => [Python::Virtualenv['/virtualenvs/Seasoning'], File['seasoning_requirements']],
   }
   
@@ -69,7 +67,7 @@ class seasoning::environment {
     user => root,
     refreshonly => true,
     subscribe => Vcsrepo['/srv/webapps/Seasoning'],
-    require => Python::Virtualenv['/virtualenvs/Seasoning'],
+    require => [Python::Virtualenv['/virtualenvs/Seasoning'], File['secrets_file'], Exec['seasoning_requirements']],
   }
   
 }
