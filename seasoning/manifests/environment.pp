@@ -52,7 +52,7 @@ class seasoning::environment {
     command => "/virtualenvs/Seasoning/bin/pip --log-file /tmp/pip.log install --use-wheel --find-links=/tmp/wheels -r /srv/webapps/Seasoning/requirements.txt",
     timeout => 1800,
     user => root,
-    require => [Python::Virtualenv['/virtualenvs/Seasoning'], File['seasoning_requirements']],
+    require => [Python::Virtualenv['/virtualenvs/Seasoning'], File['seasoning_requirements'], File['wheels']],
   }
   
   package { 'sass':
