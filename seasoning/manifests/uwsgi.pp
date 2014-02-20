@@ -59,7 +59,7 @@ class seasoning::uwsgi {
     hasrestart => true,
     hasstatus => true,
     require => [File['uwsgi_config'], File['uwsgi_startup_script']],
-    subscribe => [File['uwsgi_config'], File['uwsgi_startup_script']],
+    subscribe => [Vcsrepo['/srv/webapps/Seasoning'], Service['nginx'], File['uwsgi_config'], File['uwsgi_startup_script']],
   }
   
 }
