@@ -67,7 +67,11 @@ class seasoning::environment {
     user => root,
     refreshonly => true,
     subscribe => Vcsrepo['/srv/webapps/Seasoning'],
-    require => [Python::Virtualenv['/virtualenvs/Seasoning'], File['secrets_file'], Exec['seasoning_requirements']],
+    require => [Python::Virtualenv['/virtualenvs/Seasoning'], File['secrets_file'], Exec['seasoning_requirements'], Package['sass']],
+  }
+
+  package { 'sendmail':
+    ensure => 'installed',
   }
   
 }
