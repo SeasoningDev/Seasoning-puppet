@@ -73,5 +73,11 @@ class seasoning::environment {
   package { 'sendmail':
     ensure => 'installed',
   }
+
+  file { 'localtime':
+    path => '/etc/localtime',
+    ensure => present,
+    source => '/usr/share/zoneinfo/Europe/Brussels'
+  }
   
 }
