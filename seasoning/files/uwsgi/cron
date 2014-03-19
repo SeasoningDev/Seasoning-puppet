@@ -1,0 +1,1 @@
+/virtualenvs/Seasoning/bin/python /srv/webapps/Seasoning/Seasoning/manage.py update_recipe_footprints

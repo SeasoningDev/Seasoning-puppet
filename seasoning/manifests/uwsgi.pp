@@ -53,6 +53,14 @@ class seasoning::uwsgi {
     group => root,
     mode => 755,
   }
+
+  file { 'daily_cron':
+    path => '/etc/cron/cron.daily/seasoning.cron',
+    owner => uwsgi,
+    group => root,
+    mode => 661,
+    source => 'puppet:///modules/seasoning/uwsgi/cron',
+  }
   
   service { 'uwsgi':
     ensure => running,
