@@ -55,7 +55,7 @@ class seasoning::uwsgi {
   }
 
   file { 'daily_cron':
-    path => '/etc/cron/cron.daily/seasoning.cron',
+    path => '/etc/cron.daily/seasoning',
     owner => uwsgi,
     group => root,
     mode => 661,
